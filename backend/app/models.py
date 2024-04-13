@@ -35,7 +35,7 @@ class User(Base):
     github_username = Column(String, nullable=False)
     linkedin_username = Column(String, nullable=False)
     skills = Column(ARRAY(String), nullable=False)
-    nationality = Column(String(2), nullable=False)
+    country = Column(String, nullable=False)
     hobbies = Column(ARRAY(String), nullable=False)
     preferred_buddy_type = Column(buddy_type_enum, index=True, nullable=False)
     preferred_skills = Column(ARRAY(String), nullable=False)
