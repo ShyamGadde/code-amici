@@ -17,7 +17,7 @@ def create_user(session: Session, user: schemas.UserRegister) -> User:
 
 
 def get_user(session: Session, user_id: int) -> User | None:
-    return session.query(User).filter(User.id == user_id).first()
+    return session.query(User).get(user_id)
 
 
 def get_user_by_email(session: Session, email: str) -> User | None:
