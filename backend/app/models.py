@@ -29,7 +29,7 @@ class User(Base):
     hashed_password = Column(String, nullable=False)
     full_name = Column(String, nullable=False)
     bio = Column(Text)
-    profile_pic = Column(String)
+    profile_pic_url = Column(String)
     dob = Column(Date, nullable=False)
     gender = Column(gender_enum, index=True, nullable=False)
     github_username = Column(String, nullable=False)
