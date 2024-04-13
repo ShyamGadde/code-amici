@@ -22,3 +22,12 @@ def get_user(session: Session, user_id: int) -> User | None:
 
 def get_user_by_email(session: Session, email: str) -> User | None:
     return session.query(User).filter(User.email == email).first()
+
+
+def update_user(session: Session, user: User, user_in: schemas.UserUpdate) -> User:
+    update_data = user_in.model_dump(exclude_unset=True)
+    for field, value in update_data.items():
+        setattr(user, field, value)
+    session.commit()
+    session.refresh(user)
+    return user

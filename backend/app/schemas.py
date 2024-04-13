@@ -58,3 +58,20 @@ class UserPublic(UserBase):
     class Config:
         # Pydantic ORM mode (formerly 'orm_mode')
         from_attributes = True
+
+
+class UserUpdate(BaseModel):
+    email: str | None = None
+    full_name: str | None = None
+    bio: str | None = None
+    profile_pic: str | None = None
+    dob: date | None = None
+    gender: GenderEnum | None = None
+    github_username: str | None = None
+    linkedin_username: str | None = None
+    skills: list[str] | None = None
+    nationality: str | None = None
+    hobbies: list[str] | None = None
+    preferred_buddy_type: BuddyTypeEnum | None = None
+    preferred_skills: list[str] | None = None
+    preferred_gender: GenderEnum | None = None
