@@ -2,7 +2,7 @@
 Pydantic models for the FastAPI app
 """
 
-from datetime import date
+from datetime import date, datetime
 from enum import Enum
 
 from pydantic import BaseModel
@@ -37,12 +37,24 @@ class UserBase(BaseModel):
     preferred_gender: GenderEnum
 
 
-class UserCreate(UserBase):
+class UserRegister(UserBase):
     password: str
 
 
 class User(UserBase):
+    id: int | None = None
+    hashed_password: str
+    created_at: datetime | None = None
+    updated_at: datetime | None = None
+
+    class Config:
+        # Pydantic ORM mode (formerly 'orm_mode')
+        from_attributes = True
+
+
+class UserPublic(UserBase):
     id: int
 
     class Config:
+        # Pydantic ORM mode (formerly 'orm_mode')
         from_attributes = True
