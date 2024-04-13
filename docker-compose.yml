@@ -1,11 +1,4 @@
 services:
-  db:
-    image: postgres:12
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
   backend:
     build: ./backend
     ports:
@@ -14,6 +7,15 @@ services:
       - db
     env_file:
       - .env
+    # restart: always
+
+  db:
+    image: postgres:12
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # restart: always
 
 volumes:
   postgres_data:
