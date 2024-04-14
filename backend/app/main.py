@@ -46,6 +46,9 @@ def login_access_token(
 def register_user(
     session: SessionDep, user_in: schemas.UserRegister
 ) -> schemas.Message:
+    """
+    Create new user.
+    """
     if crud.get_user_by_email(session, user_in.email):
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -57,11 +60,17 @@ def register_user(
 
 @app.get("/users/me/", response_model=schemas.UserPublic)
 def read_user_me(current_user: CurrentUser) -> Any:
+    """
+    Get current user.
+    """
     return current_user
 
 
 @app.get("/users/me/matches/", response_model=list[schemas.UserMatch])
 def get_user_matches(session: SessionDep, current_user: CurrentUser) -> Any:
+    """
+    Retrieve matches for current user.
+    """
     matches = crud.get_user_matches(session, current_user)
     matches = rank_matches(current_user, matches)
     return matches
@@ -71,6 +80,9 @@ def get_user_matches(session: SessionDep, current_user: CurrentUser) -> Any:
 def update_user_me(
     session: SessionDep, current_user: CurrentUser, user_in: schemas.UserUpdate
 ) -> Any:
+    """
+    Update own user.
+    """
     if user_in.email:
         existing_user = crud.get_user_by_email(session, user_in.email)
         if existing_user and existing_user.id != current_user.id:
@@ -88,5 +100,8 @@ def update_user_me(
 
 @app.delete("/users/me/", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user_me(session: SessionDep, current_user: CurrentUser):
+    """
+    Delete own user.
+    """
     session.delete(current_user)
     session.commit()
