@@ -1,12 +1,10 @@
-import os
-
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-DATABASE_URL = f'postgresql://{os.environ["POSTGRES_USER"]}:{os.environ["POSTGRES_PASSWORD"]}@db/{os.environ["POSTGRES_DB"]}'
+from app.core.config import settings
 
-engine = create_engine(DATABASE_URL)
+engine = create_engine(str(settings.SQLALCHEMY_DATABASE_URI))
 
 # Each instance of the SessionLocal class will be a database session.
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
