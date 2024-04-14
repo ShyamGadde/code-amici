@@ -30,7 +30,7 @@ class UserBase(BaseModel):
     github_username: str
     linkedin_username: str
     skills: list[str]
-    nationality: str
+    country: str
     hobbies: list[str]
     preferred_buddy_type: BuddyTypeEnum
     preferred_skills: list[str]
@@ -70,7 +70,7 @@ class UserUpdate(BaseModel):
     github_username: str | None = None
     linkedin_username: str | None = None
     skills: list[str] | None = None
-    nationality: str | None = None
+    country: str | None = None
     hobbies: list[str] | None = None
     preferred_buddy_type: BuddyTypeEnum | None = None
     preferred_skills: list[str] | None = None
