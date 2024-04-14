@@ -2,7 +2,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app import schemas
-from app.core.security import get_password_hash
+from app.core.security import get_password_hash, verify_password
 from app.models import User
 
 
@@ -15,10 +15,6 @@ def create_user(session: Session, user: schemas.UserRegister) -> User:
     session.commit()
     session.refresh(db_user)
     return db_user
-
-
-def get_user(session: Session, user_id: int) -> User | None:
-    return session.query(User).get(user_id)
 
 
 def get_user_by_email(session: Session, email: str) -> User | None:
@@ -52,14 +48,11 @@ def get_user_matches(session: Session, current_user: User) -> list[schemas.UserM
             "current_user_gender": current_user.gender,
         },
     )
-    matches = [schemas.UserMatch.model_validate(row) for row in result]
-    return matches
+    return [schemas.UserMatch.model_validate(row) for row in result]
 
 
-def update_user(session: Session, user: User, user_in: schemas.UserUpdate) -> User:
-    update_data = user_in.model_dump(exclude_unset=True)
-    for field, value in update_data.items():
-        setattr(user, field, value)
-    session.commit()
-    session.refresh(user)
-    return user
+def authenticate(session: Session, email: str, password: str) -> User | None:
+    if db_user := get_user_by_email(session, email):
+        return db_user if verify_password(password, db_user.hashed_password) else None
+    else:
+        return None
