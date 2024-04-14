@@ -24,7 +24,7 @@ class UserBase(BaseModel):
     email: str
     full_name: str
     bio: str | None = None
-    profile_pic: str | None = None
+    profile_pic_url: str | None = None
     dob: date
     gender: GenderEnum
     github_username: str
@@ -64,7 +64,7 @@ class UserUpdate(BaseModel):
     email: str | None = None
     full_name: str | None = None
     bio: str | None = None
-    profile_pic: str | None = None
+    profile_pic_url: str | None = None
     dob: date | None = None
     gender: GenderEnum | None = None
     github_username: str | None = None
@@ -82,7 +82,7 @@ class UserMatch(BaseModel):
     email: str
     full_name: str
     bio: str | None = None
-    profile_pic: str | None = None
+    profile_pic_url: str | None = None
     dob: date
     gender: GenderEnum
     github_username: str
