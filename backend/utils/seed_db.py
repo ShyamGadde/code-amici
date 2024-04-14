@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("/app")
 
-from app.database import SessionLocal
+from app.core.db import SessionLocal
 from app.models import User
 
 session = SessionLocal()

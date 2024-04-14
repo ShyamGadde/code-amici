@@ -15,7 +15,7 @@ from sqlalchemy import (
     func,
 )
 
-from app.database import Base
+from app.core.db import Base
 
 gender_enum = Enum("Male", "Female", "Any", name="GENDER")
 buddy_type_enum = Enum("Buddy", "Mentor", "Mentee", name="BUDDY_TYPE")
