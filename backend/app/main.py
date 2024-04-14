@@ -49,3 +49,13 @@ def update_user_me(
         raise HTTPException(status_code=404, detail="User not found")
     db_user = crud.update_user(session, db_user, user_in)
     return db_user
+
+
+@app.delete("/users/me/")
+def delete_user_me(user_id: int, session: SessionDep) -> schemas.Message:
+    db_user = crud.get_user(session, user_id)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    session.delete(db_user)
+    session.commit()
+    return schemas.Message(message="User deleted seccessfully")

@@ -94,3 +94,8 @@ class UserMatch(BaseModel):
     class Config:
         # Pydantic ORM mode (formerly 'orm_mode')
         from_attributes = True
+
+
+# Generic message
+class Message(BaseModel):
+    message: str
