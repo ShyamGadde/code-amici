@@ -5,6 +5,7 @@ from fastapi import FastAPI, HTTPException
 from app import crud, models, schemas
 from app.api.deps import SessionDep
 from app.database import engine
+from app.matches import rank_matches
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -47,4 +48,5 @@ def get_user_matches(user_id: int, session: SessionDep) -> Any:
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     matches = crud.get_user_matches(session, db_user)
+    matches = rank_matches(db_user, matches)
     return matches
