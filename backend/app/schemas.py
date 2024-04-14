@@ -75,3 +75,22 @@ class UserUpdate(BaseModel):
     preferred_buddy_type: BuddyTypeEnum | None = None
     preferred_skills: list[str] | None = None
     preferred_gender: GenderEnum | None = None
+
+
+class UserMatch(BaseModel):
+    id: int
+    email: str
+    full_name: str
+    bio: str | None = None
+    profile_pic: str | None = None
+    dob: date
+    gender: GenderEnum
+    github_username: str
+    linkedin_username: str
+    skills: list[str]
+    country: str
+    hobbies: list[str]
+
+    class Config:
+        # Pydantic ORM mode (formerly 'orm_mode')
+        from_attributes = True
