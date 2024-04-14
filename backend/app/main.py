@@ -44,7 +44,6 @@ def get_user_matches(user_id: int, session: SessionDep) -> Any:
 def update_user_me(
     user_id: int, session: SessionDep, user_in: schemas.UserUpdate
 ) -> Any:
-    print(user_in.model_dump(exclude_unset=True))
     db_user = crud.get_user(session, user_id)
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
