@@ -1,20 +1,23 @@
 from datetime import timedelta
 from typing import Annotated
 
+from fastapi import APIRouter, Depends, HTTPException, Response, status
+from fastapi.security import OAuth2PasswordRequestForm
+
 from app import crud, schemas
 from app.api.deps import SessionDep
-from app.core import security
 from app.core.config import settings
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordRequestForm
+from app.core.security import create_access_token
 
 router = APIRouter()
 
 
 @router.post("/login/access-token/")
-def login_access_token(
-    session: SessionDep, form_data: Annotated[OAuth2PasswordRequestForm, Depends()]
-) -> schemas.Token:
+def login_for_access_token(
+    response: Response,
+    session: SessionDep,
+    form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
+) -> schemas.UserPublic:
     """
     OAuth2 compatible token login, get an access token for future requests
     """
@@ -27,8 +30,8 @@ def login_access_token(
             detail="Incorrect email or password",
         )
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
-    return schemas.Token(
-        access_token=security.create_access_token(
-            user.id, expires_delta=access_token_expires
-        )
+    access_token = create_access_token(user.id, expires_delta=access_token_expires)
+    response.set_cookie(
+        key="access_token", value=f"Bearer {access_token}", httponly=True
     )
+    return user

@@ -1,7 +1,6 @@
 from typing import Annotated, Generator
 
 from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from pydantic import ValidationError
 from sqlalchemy.orm.session import Session
@@ -10,8 +9,9 @@ from app import models, schemas
 from app.core import security
 from app.core.config import settings
 from app.core.db import SessionLocal
+from app.core.security import OAuth2PasswordBearerWithCookie
 
-reusable_oauth2 = OAuth2PasswordBearer(
+reusable_oauth2 = OAuth2PasswordBearerWithCookie(
     tokenUrl=f"{settings.API_V1_STR}/login/access-token"
 )
 
