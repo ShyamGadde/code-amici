@@ -3,29 +3,8 @@ from typing import Any
 from app import crud, schemas
 from app.api.deps import CurrentUser, SessionDep
 from app.matches import rank_matches
-from fastapi import APIRouter, HTTPException, status
 
 router = APIRouter()
-
-
-@router.post(
-    "/signup/",
-    status_code=status.HTTP_201_CREATED,
-)
-def register_user(
-    session: SessionDep, user_in: schemas.UserRegister
-) -> schemas.Message:
-    """
-    Create new user.
-    """
-    if crud.get_user_by_email(session, user_in.email):
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="User with this email already exists",
-        )
-    crud.create_user(session, user_in)
-    # TODO: Create a JWT token and return it
-    return schemas.Message(message="New user registered successfully")
 
 
 @router.get("/me/", response_model=schemas.UserPublic)
