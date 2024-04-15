@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import FormContainer from "../components/FormContainer";
+import { FormContainer } from "../components";
 
 // TODO: Implement this
 const RegisterPage = () => {
