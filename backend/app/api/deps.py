@@ -34,7 +34,7 @@ def get_current_user(session: SessionDep, token: TokenDep) -> models.User:
         token_data = schemas.TokenPayload(**payload)
     except (JWTError, ValidationError) as e:
         raise HTTPException(
-            status_code=status.HTTP_401_FORBIDDEN,
+            status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
         ) from e
     if user := session.query(models.User).get(token_data.sub):
