@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
 
 // TODO: Implement this
-const RegisterPage = () => {
+const ProfilePage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -56,4 +56,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default ProfilePage;
