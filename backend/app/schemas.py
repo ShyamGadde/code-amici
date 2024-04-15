@@ -98,7 +98,7 @@ class UserMatch(BaseModel):
 
 # Generic message
 class Message(BaseModel):
-    message: str
+    details: str
 
 
 # JSON payload containing access token
