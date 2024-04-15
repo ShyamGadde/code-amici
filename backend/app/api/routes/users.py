@@ -1,5 +1,7 @@
 from typing import Any
 
+from fastapi import APIRouter, HTTPException, Response, status
+
 from app import crud, schemas
 from app.api.deps import CurrentUser, SessionDep
 from app.matches import rank_matches
@@ -48,9 +50,10 @@ def update_user_me(
 
 
 @router.delete("/me/", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user_me(session: SessionDep, current_user: CurrentUser):
+def delete_user_me(response: Response, session: SessionDep, current_user: CurrentUser):
     """
     Delete own user.
     """
     session.delete(current_user)
     session.commit()
+    response.delete_cookie("access_token")
