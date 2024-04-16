@@ -13,6 +13,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
           password
         )}&scope=&client_id=&client_secret=`,
       }),
+      credentials: "include",
+    }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: "/api/auth/register/",
+        method: "POST",
+        body: data,
+      }),
     }),
     logout: builder.mutation({
       query: () => ({
@@ -23,4 +31,5 @@ export const userApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation } = userApiSlice;
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation } =
+  userApiSlice;
