@@ -9,6 +9,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import App from "./App.jsx";
+import { PrivateRoute } from "./components";
 import "./index.css";
 import { HomePage, LoginPage, ProfilePage, RegisterPage } from "./pages";
 import store from "./store";
@@ -16,10 +17,15 @@ import store from "./store";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
+      {/* Private Routes */}
+      <Route path="" element={<PrivateRoute />}>
+        <Route index={true} path="/" element={<HomePage />} />
+      </Route>
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/profile" element={<ProfilePage />} />
+      </Route>
     </Route>
   )
 );
