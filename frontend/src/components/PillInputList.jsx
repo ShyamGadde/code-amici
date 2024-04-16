@@ -21,7 +21,6 @@ const PillInputList = ({ list, setList }) => {
     <>
       <Form.Control
         type="text"
-        placeholder="Enter full name"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={(e) => {
