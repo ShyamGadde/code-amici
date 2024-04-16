@@ -60,12 +60,12 @@ const LoginPage = () => {
           ></Form.Control>
         </Form.Group>
 
-        {isLoading && <Loader />}
-
         <Button type="submit" variant="primary" className="mt-3">
           Sign In
         </Button>
       </Form>
+
+      {isLoading && <Loader />}
 
       <Row className="py-3">
         <Col>
