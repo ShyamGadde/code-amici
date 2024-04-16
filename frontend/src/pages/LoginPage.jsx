@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -40,25 +40,25 @@ const LoginPage = () => {
       <h1>Sign In</h1>
 
       <Form onSubmit={submitHandler}>
-        <Form.Group className="my-2" controlId="email">
-          <Form.Label>Email Address</Form.Label>
+        <FloatingLabel controlId="email" label="Email Address" className="my-3">
           <Form.Control
             type="email"
             placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+            required
+          />
+        </FloatingLabel>
 
-        <Form.Group className="my-2" controlId="password">
-          <Form.Label>Password</Form.Label>
+        <FloatingLabel controlId="password" label="Password" className="my-3">
           <Form.Control
             type="password"
             placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+            required
+          />
+        </FloatingLabel>
 
         <Button type="submit" variant="primary" className="mt-3">
           Sign In
