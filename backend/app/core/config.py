@@ -6,12 +6,12 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "Coder"
+    PROJECT_NAME: str = "CodeCronies"
     API_V1_STR: str = "/api/v1"
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 30  # 30 days
-    ACCESS_TOKEN_COOKIE_EXPIRE_SECONDS: int = 60 * 60 * 24 * 30  # 30 days
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 70 days
+    ACCESS_TOKEN_COOKIE_EXPIRE_SECONDS: int = 60 * 60 * 24 * 7  # 7 days
 
     POSTGRES_SERVER: str = "localhost"
     POSTGRES_PORT: int = 5432
