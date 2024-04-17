@@ -62,7 +62,7 @@ class UserPublic(UserBase):
         from_attributes = True
 
 
-class UserBase(BaseModel):
+class UserUpdate(BaseModel):
     email: EmailStr
     full_name: str | None = None
     bio: str | None = None
