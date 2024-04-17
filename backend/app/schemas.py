@@ -28,8 +28,8 @@ class UserBase(BaseModel):
     gender: GenderEnum
     country: str
     city: str
-    github_username: str
-    linkedin_username: str
+    github_profile: str
+    linkedin_profile: str
     skill_proficiencies: list[str]
     highest_education: str
     experience_years: int
@@ -71,8 +71,8 @@ class UserUpdate(BaseModel):
     gender: GenderEnum | None = None
     country: str | None = None
     city: str | None = None
-    github_username: str | None = None
-    linkedin_username: str | None = None
+    github_profile: str | None = None
+    linkedin_profile: str | None = None
     skill_proficiencies: list[str] | None = None
     highest_education: str | None = None
     experience_years: int | None = None
@@ -90,8 +90,8 @@ class UserMatch(BaseModel):
     profile_pic_url: str | None = None
     dob: date
     gender: GenderEnum
-    github_username: str
-    linkedin_username: str
+    github_profile: str
+    linkedin_profile: str
     skills: list[str]
     country: str
     hobbies: list[str]
