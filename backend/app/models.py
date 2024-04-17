@@ -40,7 +40,7 @@ class User(Base):
     experience_years = Column(Integer, nullable=False)
     hobbies = Column(ARRAY(String), nullable=False)
     languages = Column(ARRAY(String), nullable=False)
-    goal = Column(String, nullable=False)
+    goal = Column(goal_enum, nullable=False)
     commitment_hours = Column(Integer, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), default=func.now())
     updated_at = Column(
