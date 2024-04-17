@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { FormContainer, Loader, PillInputList } from "../components";
 import { setCredentials } from "../slices/authSlice";
 import { useRegisterMutation } from "../slices/usersApiSlice";
+import { FancyHeading } from "../styles/FancyHeading";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
@@ -73,7 +74,9 @@ const RegisterPage = () => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>
+        <FancyHeading>Sign Up</FancyHeading>
+      </h1>
 
       <Form onSubmit={submitHandler}>
         <Form.Group className="my-3" controlId="email">

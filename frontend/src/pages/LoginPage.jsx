@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { FormContainer, Loader } from "../components";
 import { setCredentials } from "../slices/authSlice";
 import { useLoginMutation } from "../slices/usersApiSlice";
+import { FancyHeading } from "../styles/FancyHeading";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -37,7 +38,9 @@ const LoginPage = () => {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1 style={{ marginBottom: "30px" }}>
+        <FancyHeading>Sign In</FancyHeading>
+      </h1>
 
       <Form onSubmit={submitHandler}>
         <FloatingLabel controlId="email" label="Email Address" className="my-3">
