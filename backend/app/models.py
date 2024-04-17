@@ -30,7 +30,7 @@ class User(Base):
     bio = Column(Text)
     profile_image = Column(String)
     date_of_birth = Column(Date, nullable=False)
-    gender = Column(gender_enum, index=True, nullable=False)
+    gender = Column(gender_enum, nullable=False)
     country = Column(String, nullable=False)
     city = Column(String, nullable=False)
     github_profile = Column(String, nullable=False)
