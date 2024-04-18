@@ -1,11 +1,19 @@
 FROM python:3.11
 
-WORKDIR /app
+# Install postgresql-client
+RUN apt-get update && apt-get install -y postgresql-client
 
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR /usr/src/app
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+COPY requirements.txt ./requirements.txt
 
-COPY . /app
+RUN pip install --no-cache-dir --upgrade -r ./requirements.txt
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+COPY . .
+
+EXPOSE 80
+
+COPY scripts/wait-for-postgres.sh /wait-for-postgres.sh
+RUN chmod +x /wait-for-postgres.sh
+
+CMD /wait-for-postgres.sh uvicorn app.main:app --host 0.0.0.0 --port 80
