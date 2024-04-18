@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException, Response, status
 from app import crud, schemas
 from app.api.deps import CurrentUser, SessionDep
 from app.matches import rank_matches
+from app.recommendations import get_buddy_recommendations
 
 router = APIRouter()
 
@@ -17,14 +18,16 @@ def read_user_me(current_user: CurrentUser) -> Any:
     return current_user
 
 
-@router.get("/me/matches/", response_model=list[schemas.UserMatch])
+@router.get("/me/recommendations/", response_model=list[schemas.UserMatch])
 def get_user_matches(session: SessionDep, current_user: CurrentUser) -> Any:
     """
-    Retrieve matches for current user.
+    Retrieve recommendations for current user.
     """
-    matches = crud.get_user_matches(session, current_user)
-    matches = rank_matches(current_user, matches)
-    return matches
+    # matches = crud.get_user_matches(session, current_user)
+    # matches = rank_matches(current_user, matches)
+    # return matches
+
+    return get_buddy_recommendations(current_user, session)
 
 
 @router.patch("/me/", response_model=schemas.UserPublic)
