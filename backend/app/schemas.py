@@ -63,7 +63,7 @@ class UserPublic(UserBase):
 
 
 class UserUpdate(BaseModel):
-    email: EmailStr
+    email: EmailStr | None = None
     full_name: str | None = None
     bio: str | None = None
     profile_image: str | None = None
