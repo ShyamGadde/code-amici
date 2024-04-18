@@ -8,7 +8,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/users/me/matches/", {
+        const response = await fetch("/api/users/me/recommendations/", {
           credentials: "include", // include cookies in the request
         });
         const data = await response.json();

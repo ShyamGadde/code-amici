@@ -8,7 +8,6 @@ from sqlalchemy import (
     Column,
     Date,
     Enum,
-    Index,
     Integer,
     String,
     Text,
@@ -17,8 +16,8 @@ from sqlalchemy import (
 
 from app.core.db import Base
 
-gender_enum = Enum("Male", "Female", "Any", name="GENDER")
-buddy_type_enum = Enum("Buddy", "Mentor", "Mentee", name="BUDDY_TYPE")
+gender_enum = Enum("Male", "Female", name="GENDER")
+goal_enum = Enum("Build Projects", "Prepare for Coding Interviews", "Both", name="GOAL")
 
 
 class User(Base):
@@ -26,28 +25,26 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
+    password = Column(String, nullable=False)
     full_name = Column(String, nullable=False)
     bio = Column(Text)
-    profile_pic_url = Column(String)
-    dob = Column(Date, nullable=False)
-    gender = Column(gender_enum, index=True, nullable=False)
-    github_username = Column(String, nullable=False)
-    linkedin_username = Column(String, nullable=False)
-    skills = Column(ARRAY(String), nullable=False)
+    profile_image = Column(String)
+    date_of_birth = Column(Date, nullable=False)
+    gender = Column(gender_enum, nullable=False)
     country = Column(String, nullable=False)
+    city = Column(String, nullable=False)
+    github_profile = Column(String, nullable=False)
+    linkedin_profile = Column(String, nullable=False)
+    skill_proficiencies = Column(ARRAY(String), nullable=False)
+    highest_education = Column(Text, nullable=False)
+    experience_years = Column(Integer, nullable=False)
     hobbies = Column(ARRAY(String), nullable=False)
-    preferred_buddy_type = Column(buddy_type_enum, index=True, nullable=False)
-    preferred_skills = Column(ARRAY(String), nullable=False)
-    preferred_gender = Column(gender_enum, index=True, nullable=False)
+    languages = Column(ARRAY(String), nullable=False)
+    goal = Column(goal_enum, nullable=False)
+    commitment_hours = Column(Integer, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), default=func.now())
     updated_at = Column(
         TIMESTAMP(timezone=True),
         default=func.now(),
         onupdate=func.now(),
     )
-
-
-# Create GIN indexes on the 'skills' and 'preferred_skills' columns
-Index("ix_users_skills", User.skills, postgresql_using="gin")
-Index("ix_users_preferred_skills", User.preferred_skills, postgresql_using="gin")

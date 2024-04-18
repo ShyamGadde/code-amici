@@ -31,7 +31,7 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <IoCodeSlashSharp /> Coder
+              <IoCodeSlashSharp /> CodeAmici
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

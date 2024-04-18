@@ -2,7 +2,7 @@ import json
 import os
 import sys
 
-sys.path.append("/app")
+sys.path.append("../app")
 
 from app.core.db import SessionLocal
 from app.models import User
