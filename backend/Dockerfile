@@ -13,7 +13,7 @@ COPY . .
 
 EXPOSE 80
 
-COPY scripts/wait-for-postgres.sh /wait-for-postgres.sh
+COPY ./scripts/wait-for-postgres.sh /wait-for-postgres.sh
 RUN chmod +x /wait-for-postgres.sh
 
 CMD /wait-for-postgres.sh uvicorn app.main:app --host 0.0.0.0 --port 80
