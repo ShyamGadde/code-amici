@@ -67,7 +67,22 @@ Here is what you need to be able to run CodeAmici:
 ## How to use
 
 1. Once you've successfully run `docker-compose up` and the Docker Compose application is running, open your web browser and navigate to [http://localhost:5000/](http://localhost:5000/).
-2.
+2. You will be redirected to the login page. Click 'Sign Up' in the top right-hand corner to be redirected to the registration form.
+3. Fill in the details as requested in the form.
+4. After successful registration, you will be redirected to the recommendations page. Here, you will see your personalized recommendations displayed along with a brief bio, and links to the individual's GitHub and LinkedIn profiles.
+5. You may then proceed to check out their GitHub Profile and perhaps even connect on LinkedIn for further communication.
+
+> **NOTE:**  
+> These are dummy profiles and hence their LinkedIn and GitHub links don't works.
+
+> **INFO:**  
+> You may also use these two test user accounts for signing in.
+>
+> > Email: testuser1@mail.com  
+> > Password: 1234
+> >
+> > Email: testuser2@mail.com  
+> > Password: 1234
 
 ## How it works
 
@@ -97,7 +112,20 @@ You can access the API documentation in two ways:
 1. **Swagger UI**: Navigate to [http://localhost:8000/docs](http://localhost:8000/docs) in your web browser. This interactive interface allows you to not only view the details of each API route but also test them out directly from the browser.
 2. **Redoc**: Alternatively, you can view the API documentation at [http://localhost:8000/redoc](http://localhost:8000/redoc).
 
-### Authentication
+### Authentication and Security
+
+CodeAmici uses JWT (JSON Web Tokens) for secure user authentication. The JWT token is stored in an HTTP-only cookie, providing a layer of security against cross-site scripting (XSS) attacks.
+
+The application is composed of a frontend and a backend, each running in separate Docker containers. An Nginx server is used to serve the frontend files and also acts as a reverse proxy that forwards API calls to the backend. This setup allows the frontend and backend to communicate as if they were on the same domain, avoiding issues with the SameSite attribute of cookies.
+
+Here’s a brief overview of how the authentication process works:
+
+1. **User Authentication**: When a user logs in, the backend validates their credentials. Upon successful validation, the backend generates a JWT token and sends it as a Set-Cookie header in the response.
+2. **Storing JWT Token**: The JWT token is stored in an HTTP-only cookie on the client side. This means the token cannot be accessed through client-side scripts, providing protection against XSS attacks.
+3. **API Requests**: When the client makes subsequent API requests, the JWT token is automatically included in the Cookie header of the request.
+4. **Token Verification**: The backend verifies the JWT token in each request to protected API routes. If the token is valid, the request is processed; otherwise, an error is returned.
+5. **Reverse Proxy**: As this is a development environment, this setup does not use HTTP certificates, so the Secure attribute is not set for the cookie, and the SameSite attribute cannot be set to None. The Nginx server acts as a reverse proxy by forwarding API requests from the client to the backend.
+6. **CORS Configuration**: The backend uses CORS middleware and includes the Nginx server in its list of allowed origins. This setup allows the frontend and backend to communicate despite being on different origins.
 
 ## Acknowledgements
 
