@@ -24,10 +24,10 @@ Here is what you need to be able to run CodeAmici
 
 3. Configure your `.env` file
 
-   - Make a copy of `.env.example` and rename it to `.env`
+   - Make a copy of `.env.example` and rename it to `.env` (`mv .env.example .env`)
    - The keys under `# Database` are pre-configured for the Docker setup and should not be changed
    - The keys under `# JWT` can be modified as per your requirements
-   - To generate a new secret key use `openssl rand -hex 32` and replace the `SECRET_KEY` value in the `.env` file
+   - You may change the `SECRET_KEY` by generating a new secret key using `openssl rand -hex 32` and replacing the `SECRET_KEY` value in the `.env` file
 
 4. Run Docker Compose
 
