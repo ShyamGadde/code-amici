@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "CodeCronies"
+    PROJECT_NAME: str = "CodeAmici"
     API_V1_STR: str = "/api/v1"
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str = "fastapi"
     POSTGRES_PASSWORD: str = "fastapi"
-    POSTGRES_DB: str = "coder"
+    POSTGRES_DB: str = "code_amici"
 
     @computed_field  # type: ignore[misc]
     @property

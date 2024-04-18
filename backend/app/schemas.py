@@ -82,19 +82,8 @@ class UserUpdate(BaseModel):
     commitment_hours: int | None = None
 
 
-class UserMatch(BaseModel):
+class UserMatch(UserBase):
     id: int
-    email: str
-    full_name: str
-    bio: str | None = None
-    profile_pic_url: str | None = None
-    dob: date
-    gender: GenderEnum
-    github_profile: str
-    linkedin_profile: str
-    skills: list[str]
-    country: str
-    hobbies: list[str]
 
     class Config:
         # Pydantic ORM mode (formerly 'orm_mode')
