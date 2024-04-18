@@ -66,7 +66,7 @@ Here is what you need to be able to run CodeAmici:
 
 ## How to use
 
-1. Once you've successfully run `docker-compose up` and the Docker Compose application is running, open your web browser and navigate to `http://localhost:5000/`.
+1. Once you've successfully run `docker-compose up` and the Docker Compose application is running, open your web browser and navigate to [http://localhost:5000/](http://localhost:5000/).
 2.
 
 ## How it works
@@ -94,8 +94,8 @@ CodeAmici’s backend API is built with FastAPI and provides comprehensive docum
 
 You can access the API documentation in two ways:
 
-1. **Swagger UI**: Navigate to `localhost:8000/docs` in your web browser. This interactive interface allows you to not only view the details of each API route but also test them out directly from the browser.
-2. **Redoc**: Alternatively, you can view the API documentation at `localhost:8000/redoc`.
+1. **Swagger UI**: Navigate to [http://localhost:8000/docs](http://localhost:8000/docs) in your web browser. This interactive interface allows you to not only view the details of each API route but also test them out directly from the browser.
+2. **Redoc**: Alternatively, you can view the API documentation at [http://localhost:8000/redoc](http://localhost:8000/redoc).
 
 ### Authentication
 
