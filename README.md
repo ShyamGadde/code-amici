@@ -84,6 +84,11 @@ Here is what you need to be able to run CodeAmici:
 > > Email: testuser2@mail.com  
 > > Password: 1234
 
+## Screenshots
+Homepage:
+![image](https://github.com/ShyamGadde/code-amici/assets/73636812/cca05834-9a9e-469b-892a-312c8558af32)
+
+
 ## How it works
 
 ### How the Recommendation System Works
