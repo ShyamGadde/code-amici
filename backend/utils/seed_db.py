@@ -18,3 +18,5 @@ with open(file_path) as file:
         user_db = User(**user)
         session.add(user_db)
         session.commit()
+
+print("DONE!!")
