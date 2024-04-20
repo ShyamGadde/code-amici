@@ -105,8 +105,8 @@ The CodeAmici recommendation system uses a content-based filtering approach to m
 The recommendation process involves the following steps:
 
 1. **Data Preprocessing**: The system collects and preprocesses the user profile data, converting it into a format suitable for the recommendation algorithm.
-2. **Similarity Calculation**: The system calculates the similarity between each pair of users based on the attributes mentioned above. For numerical data, such as age and availability, Euclidean distance is used. For categorical data, like skills and languages, cosine similarity and Jaccard Index are employed.
-3. **Recommendation Generation**: The system ranks the potential coding partners based on their similarity scores and presents the top recommendations to the user. The number of recommendations displayed can be configured based on user preference.
+2. **Similarity Calculation**: The system calculates the similarity between each pair of users based on the attributes mentioned above. For numerical data, such as age, years of coding experience and availability, Euclidean distance is used. For ordinal data like skills and their expertise level, Cosine Similarity is used. And for categorical data, like languages and hobbies, Jaccard Index is employed.
+3. **Recommendation Generation**: The system ranks the potential coding partners based on their similarity scores and presents the top recommendations to the user.
 
 ### Backend API
 
