@@ -18,7 +18,6 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [fullname, setFullname] = useState("");
   const [bio, setBio] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("");
@@ -43,7 +42,6 @@ const RegisterPage = () => {
     setEmail(userInfo.email);
     setFullname(userInfo.full_name);
     setBio(userInfo.bio);
-    setProfileImage(userInfo.profile_image);
     setDob(userInfo.date_of_birth);
     setGender(userInfo.gender);
     setCountry(userInfo.country);
@@ -80,35 +78,35 @@ const RegisterPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-      try {
-        let cleanedGithubProfile = githubProfile.replace(/\/$/, "");
+    try {
+      let cleanedGithubProfile = githubProfile.replace(/\/$/, "");
 
-        let userData = {
-          email: email,
-          full_name: fullname,
-          bio: bio,
-          profile_image: profileImage,
-          date_of_birth: dob,
-          gender: gender,
-          country: country,
-          city: city,
-          github_profile: githubProfile,
-          linkedin_profile: linkedinProfile,
-          skill_proficiencies: skillProficiencies,
-          highest_education: highestEducation,
-          experience_years: experienceYears,
-          hobbies: hobbies,
-          languages: languages,
-          goal: goal,
-          commitment_hours: commitmentHours,
-        };
-        console.log(userData);
+      let userData = {
+        email: email,
+        full_name: fullname,
+        bio: bio,
+        profile_image: cleanedGithubProfile + ".png",
+        date_of_birth: dob,
+        gender: gender,
+        country: country,
+        city: city,
+        github_profile: githubProfile,
+        linkedin_profile: linkedinProfile,
+        skill_proficiencies: skillProficiencies,
+        highest_education: highestEducation,
+        experience_years: experienceYears,
+        hobbies: hobbies,
+        languages: languages,
+        goal: goal,
+        commitment_hours: commitmentHours,
+      };
+      console.log(userData);
 
-        const res = await updateProfile(userData).unwrap();
-        dispatch(setCredentials({ ...res }));
-        toast.success("Profile updated successfully");
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
+      const res = await updateProfile(userData).unwrap();
+      dispatch(setCredentials({ ...res }));
+      toast.success("Profile updated successfully");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
     }
   };
 

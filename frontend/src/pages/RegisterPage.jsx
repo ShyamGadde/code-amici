@@ -21,7 +21,6 @@ const ProfilePage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [fullname, setFullname] = useState("");
   const [bio, setBio] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("Male");
   const [country, setCountry] = useState("");
@@ -57,14 +56,13 @@ const ProfilePage = () => {
     } else {
       try {
         let cleanedGithubProfile = githubProfile.replace(/\/$/, "");
-        setProfileImage(cleanedGithubProfile + ".png");
 
         let userData = {
           email: email,
           password: password,
           full_name: fullname,
           bio: bio,
-          profile_image: profileImage,
+          profile_image: cleanedGithubProfile + ".png",
           date_of_birth: dob,
           gender: gender,
           country: country,
