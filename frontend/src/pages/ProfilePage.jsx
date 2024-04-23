@@ -16,8 +16,6 @@ import { FancyHeading } from "../styles/FancyHeading";
 
 const RegisterPage = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [fullname, setFullname] = useState("");
   const [bio, setBio] = useState("");
   const [profileImage, setProfileImage] = useState(null);
@@ -82,16 +80,11 @@ const RegisterPage = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-    } else {
       try {
         let cleanedGithubProfile = githubProfile.replace(/\/$/, "");
-        setProfileImage(cleanedGithubProfile + ".png");
 
         let userData = {
           email: email,
-          password: password,
           full_name: fullname,
           bio: bio,
           profile_image: profileImage,
@@ -116,7 +109,6 @@ const RegisterPage = () => {
         toast.success("Profile updated successfully");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
-      }
     }
   };
 
@@ -134,26 +126,6 @@ const RegisterPage = () => {
             placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group className="my-4" controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group className="my-4" controlId="confirmPassword">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </Form.Group>
 
