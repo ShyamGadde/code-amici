@@ -200,7 +200,7 @@ const ProfilePage = () => {
           <Form.Label>GitHub Profile Link</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter GitHub Link"
+            placeholder="Enter GitHub Porfile Link"
             value={githubProfile}
             onChange={(e) => setGithubProfile(e.target.value)}
             required
@@ -211,7 +211,7 @@ const ProfilePage = () => {
           <Form.Label>LinkedIn Profile Link</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter LinkedIn username"
+            placeholder="Enter LinkedIn Profile Link"
             value={linkedinProfile}
             onChange={(e) => setLinkedinProfile(e.target.value)}
             required
