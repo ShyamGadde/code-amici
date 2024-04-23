@@ -52,16 +52,11 @@ const HomePage = () => {
   }, []);
 
   return (
-    <Container className="px-5 py-5">
+    <Container>
       <p className="text-center mb-4">
         Here are some coding buddy recommendations based on your profile.
       </p>
-      <Row
-        style={{ paddingLeft: "50px", paddingRight: "50px" }}
-        xs={1}
-        md={3}
-        className="g-4"
-      >
+      <Row xs={1} md={2} lg={3} className="g-4">
         {data ? (
           data.map((match, index) => (
             <Col key={index}>
