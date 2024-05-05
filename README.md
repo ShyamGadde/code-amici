@@ -120,7 +120,12 @@ CodeAmici’s backend API is built with FastAPI and provides comprehensive docum
 You can access the API documentation in two ways:
 
 1. **Swagger UI**: Navigate to [http://localhost:8000/docs](http://localhost:8000/docs) in your web browser. This interactive interface allows you to not only view the details of each API route but also test them out directly from the browser.
+
+![image](./docs/api-docs-swagger-ui.jpeg)
+
 2. **Redoc**: Alternatively, you can view the API documentation at [http://localhost:8000/redoc](http://localhost:8000/redoc).
+
+![image](./docs/api-docs-redoc.jpeg)
 
 ### Authentication and Security
 
