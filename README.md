@@ -77,7 +77,7 @@ Here is what you need to be able to run CodeAmici:
 > These are dummy profiles and hence their LinkedIn and GitHub links don't works.
 
 > **INFO:**  
-> You may also use these two test user accounts for signing in.
+> You may also use one of these two test user accounts for signing in.
 >
 > > Email: testuser1@mail.com  
 > > Password: 1234
