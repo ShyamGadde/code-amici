@@ -59,7 +59,7 @@ Here is what you need to be able to run CodeAmici:
 
 6. Stopping the Application
 
-   To stop the application and remove the containers, networks, and volumes defined in your docker-compose.yml file, run the following command:
+   To stop the application, remove the containers, and delete the networks defined in the `docker-compose.yml` file, run the following command:
 
    ```sh
    docker-compose down
