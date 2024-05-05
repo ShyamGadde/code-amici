@@ -92,6 +92,10 @@ Homepage:
 
 ## How it works
 
+### Sequence Diagram
+
+![image](./docs/diagram-export-5-5-2024-7_22_08-PM.png)
+
 ### How the Recommendation System Works
 
 The CodeAmici recommendation system uses a content-based filtering approach to match users with similar interests, goals, and expertise levels. The system takes into account the following user attributes to generate personalized recommendations:
