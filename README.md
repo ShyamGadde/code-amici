@@ -9,6 +9,7 @@ CodeAmici is a coding buddy recommendation system designed to connect coders bas
 - Pydantic: Used for data validation and settings management, integrated with FastAPI.
 - Pandas and Scikit-Learn: Utilized for building the recommendation system.
 - PostgreSQL: Chosen as the SQL database for its advanced features and performance.
+- Redis: Used for caching recommendations and improving response times.
 - React and Redux Toolkit: Used for frontend.
 - JWT Token Authentication: Implemented for secure user authentication.
 - Docker and Docker Compose: Used for containerizing the application and managing multi-container Docker applications, respectively.
@@ -85,9 +86,9 @@ Here is what you need to be able to run CodeAmici:
 > > Password: 1234
 
 ## Screenshots
+
 Homepage:
 ![image](https://github.com/ShyamGadde/code-amici/assets/73636812/cca05834-9a9e-469b-892a-312c8558af32)
-
 
 ## How it works
 

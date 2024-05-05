@@ -1,6 +1,8 @@
+import pickle
 from typing import Any
 
-from fastapi import APIRouter, HTTPException, Response, status
+import redis.asyncio as redis
+from fastapi import APIRouter, HTTPException, Request, Response, status
 
 from app import crud, schemas
 from app.api.deps import CurrentUser, SessionDep
@@ -18,17 +20,38 @@ def read_user_me(current_user: CurrentUser) -> Any:
 
 
 @router.get("/me/recommendations/", response_model=list[schemas.UserMatch])
-def get_user_recommendations(session: SessionDep, current_user: CurrentUser) -> Any:
+async def get_user_recommendations(
+    request: Request, session: SessionDep, current_user: CurrentUser
+) -> Any:
     """
     Retrieve recommendations for current user.
     """
+    key = f"recommendations:{current_user.id}"
+    redis_client = redis.Redis.from_pool(request.app.state.redis_pool)
 
-    return get_buddy_recommendations(current_user, session)
+    recommendations = await redis_client.get(key)
+
+    if not recommendations:
+        recommendations = get_buddy_recommendations(current_user, session)
+        recommendations_dict = [user.to_dict() for user in recommendations]
+        recommendations_serialized = pickle.dumps(recommendations_dict)
+
+        await redis_client.set(key, recommendations_serialized, ex=3600)
+    else:  # Cache hit
+        print("INFO:\tCache hit - TTL:", await redis_client.ttl(key), "seconds")
+        recommendations = pickle.loads(recommendations)
+
+    await redis_client.close()
+
+    return recommendations
 
 
 @router.patch("/me/", response_model=schemas.UserPublic)
-def update_user_me(
-    session: SessionDep, current_user: CurrentUser, user_in: schemas.UserUpdate
+async def update_user_me(
+    request: Request,
+    session: SessionDep,
+    current_user: CurrentUser,
+    user_in: schemas.UserUpdate,
 ) -> Any:
     """
     Update own user.
@@ -45,6 +68,15 @@ def update_user_me(
         setattr(current_user, field, value)
     session.commit()
     session.refresh(current_user)
+
+    # Invalidate recommendations cache
+    key = f"recommendations:{current_user.id}"
+    redis_client = redis.Redis.from_pool(request.app.state.redis_pool)
+
+    await redis_client.delete(key)
+
+    await redis_client.close()
+
     return current_user
 
 
