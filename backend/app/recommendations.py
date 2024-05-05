@@ -5,7 +5,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import MinMaxScaler
 from sqlalchemy.orm import Session
 
-from app import schemas
 from app.core.db import engine
 from app.models import User
 
@@ -58,9 +57,7 @@ def calculate_cosine_similarity(user1_skills, user2_skills):
     return cosine_similarity([vector1], [vector2])[0][0]
 
 
-def get_buddy_recommendations(
-    current_user: User, session: Session
-) -> list[schemas.UserMatch]:
+def get_buddy_recommendations(current_user: User, session: Session):
     sql_query = f"""
     SELECT id, date_of_birth, country, city, skill_proficiencies, experience_years, hobbies, languages, goal, commitment_hours
     FROM users
