@@ -94,7 +94,7 @@ Homepage:
 
 ### Sequence Diagram
 
-![image](./docs/diagram-export-5-5-2024-7_22_08-PM.png)
+![image](./docs/diagram-export-5-5-2024-7_36_57-PM.png)
 
 ### How the Recommendation System Works
 
