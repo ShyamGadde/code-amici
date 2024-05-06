@@ -18,14 +18,14 @@ CodeAmici is a coding buddy recommendation system designed to connect coders bas
 
 Here is what you need to be able to run CodeAmici:
 
-- Docker
+- Docker Compose
 
 ## Environment Setup
 
 1. Clone the repository
 
    ```sh
-   https://github.com/ShyamGadde/code-amici.git
+   git clone https://github.com/ShyamGadde/code-amici.git
    ```
 
 2. Go to the project folder
@@ -36,7 +36,7 @@ Here is what you need to be able to run CodeAmici:
 
 3. Configure your `.env` file
 
-   - Make a copy of `.env.example` and rename it to `.env` (`mv .env.example .env`)
+   - Make a copy of `.env.sample` and rename it to `.env` (`mv .env.sample .env`)
    - The keys under `# Database` are pre-configured for the Docker setup and should not be changed
    - The keys under `# JWT` can be modified as per your requirements
    - You may change the `SECRET_KEY` by generating a new secret key using `openssl rand -hex 32` and replacing the `SECRET_KEY` value in the `.env` file
